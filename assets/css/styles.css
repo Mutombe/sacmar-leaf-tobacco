@@ -668,7 +668,7 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.08; }
    upward and slides behind the fixed nav. Compress the rhythm in steps so the
    eyebrow always clears the header instead of hiding under it. */
 @media (min-width: 860px) and (max-height: 940px) {
-  .hero-stack .hero__body { padding-block: var(--s-6) var(--s-4); }
+  .hero-stack .hero__body { padding-block: var(--s-6) var(--s-6); }
   .hero-stack .hero__body .lede { max-width: 64ch; }
   .hero-stack .pill + .h1 { margin-top: var(--s-4); }
   .hero-stack .h1 + .lede { margin-top: var(--s-4); }
@@ -684,4 +684,33 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.08; }
   .hero-stack .statrail { margin-top: var(--s-4); }
   .hero-stack .statrail__n { font-size: 1.5rem; }
   .hero-stack .btn { min-height: var(--s-12); }
+}
+
+/* ================= HERO ON PHONES (header clearance + breathing) ========
+   The earlier compression was gated at min-width:860, so phones kept the full
+   desktop rhythm: content filled the panel exactly and the eyebrow sat behind
+   the fixed nav. Same remedy, tuned for small screens — tighten the rhythm and
+   let the panel keep a clear band under the header. */
+@media (max-width: 859px) {
+  /* Reserve the fixed header's band at the top of the panel. The panel grows to
+     fit its content on mobile, so without this the body starts at the panel's
+     top edge and the eyebrow is always behind the nav, whatever the content
+     height. This is a floor, not a nudge. */
+  .hero__body { padding-block: var(--s-24) var(--s-8); }
+  .hero__body .lede { font-size: var(--fs-body); }
+  .hero__body .pill + .h1 { margin-top: var(--s-4); }
+  .hero__body .h1 + .lede { margin-top: var(--s-4); }
+  .hero__body .lede + .hero__actions { margin-top: var(--s-6); }
+  .statrail { margin-top: var(--s-6); }
+  .statrail__cell { padding-top: var(--s-3); min-height: var(--s-12); }
+}
+
+/* Short phones: the two stacked full-width CTAs cost 124px on their own, so
+   they sit side by side — but only from 380px up, below which two pill buttons
+   plus their icons cannot fit the measure and the second one clips. */
+@media (min-width: 380px) and (max-width: 859px) and (max-height: 760px) {
+  .hero__body h1 { font-size: var(--fs-display-lg); }
+  .hero__actions { flex-wrap: nowrap; }
+  .hero__actions .btn { flex: 1 1 50%; width: auto; min-height: var(--s-12); padding-inline: var(--s-4) var(--s-2); }
+  .hero__actions .btn__ic { width: var(--s-8); height: var(--s-8); }
 }
