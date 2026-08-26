@@ -72,8 +72,8 @@ come from the SLT photo shoot (`Downloads/New folder (2)`). All re-encoded to
 | `field-rows` | `field.png` | Company history |
 | `crop-rows` / `crop-sun` | `7.jpg` / `12.jpg` | Vision section, CTA backgrounds |
 | `grower` | `farm8.webp` | "Quality begins at the farm", accent band |
-| `prod-lamina` | SLT shoot, `01-07-26 18` | Lamina card + detail hero |
-| `prod-lamina-alt` | SLT shoot, `25-07-26 23` | Lamina detail page (pressed bale) |
+| `prod-lamina` | SLT shoot, `25-07-26 23` | Lamina card + detail hero (red-taped bale) |
+| `prod-lamina-alt` | SLT shoot, `25-07-26 20` | Lamina detail page (bale, second angle) |
 | `prod-cutrag` | SLT shoot, `25-07-26 12` | Cut rag card + detail hero |
 | `prod-cutrag-alt` | SLT shoot, `25-07-26 19` | Cut rag detail page (pour shot) |
 | `prod-stems` | SLT shoot, `25-07-26 10` | Stems card + detail page |
@@ -133,14 +133,13 @@ Add `class="reveal"` to any element to fade it up on scroll; `data-d="1"`–`"4"
 - **Certification claims.** ISO 9001:2015, GMP, HACCP, Zimbabwe Tobacco Board and ITGA claims
   are carried over verbatim from your existing site's product pages. These carry legal weight -
   worth confirming each is current before launch.
-- **No fines photograph.** The SLT shoot covers lamina (flat leaf flakes), cut rag
-  (shreds) and stems (sticks), but contains no shot of tobacco fines. `prod-fines`
-  therefore still uses the previous image. The lamina flake shots were NOT reused for
-  fines - under magnification they are a visibly different grade, and mislabelling a
-  product photo on a trade site risks a buyer ordering the wrong thing. Send a fines
-  shot and it drops straight in.
-- **Product-photo assignment** is my reading of the shoot (flakes = lamina, shreds =
-  cut rag, sticks = stems). Worth a glance to confirm.
+- **Four flake shots are unused.** `SLT-01-07-26 17/18/19/20` show a pile of flat leaf
+  flakes. Lamina is the red-taped bale (client-confirmed), cut rag is the shreds and
+  stems are the sticks, so the flakes are either loose/threshed lamina before pressing,
+  or fines. They are NOT currently used anywhere - assigning them to fines without
+  confirmation would risk mislabelling a product on a trade site, and the fines spec
+  says "Fine Grade (< 2mm)" while the flakes read larger than that.
+- **`prod-fines` still uses the previous image** (fine powder) for the same reason.
 - **Team.** Shows the two people your existing site lists - Sacrifice Mariga (MD) and Arief
   Yulianto (Indonesian Representative) - with their real photos. The booklet also named Dubre
   Muller and Lars Peeters; they are not on the current site, so they are not here either.
