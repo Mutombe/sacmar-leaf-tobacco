@@ -62,7 +62,9 @@ Confirmed facts used throughout:
 
 ## Photography
 
-All imported from `Documents\secmar\website\public` and re-encoded.
+Field and team shots come from the previous site's `public` folder. Product shots
+come from the SLT photo shoot (`Downloads/New folder (2)`). All re-encoded to
+1100px wide, 4:3, as jpg + webp.
 
 | File | Source | Used for |
 |---|---|---|
@@ -70,10 +72,12 @@ All imported from `Documents\secmar\website\public` and re-encoded.
 | `field-rows` | `field.png` | Company history |
 | `crop-rows` / `crop-sun` | `7.jpg` / `12.jpg` | Vision section, CTA backgrounds |
 | `grower` | `farm8.webp` | "Quality begins at the farm", accent band |
-| `prod-lamina` | `lumina.jpeg` | Lamina card + detail page |
-| `prod-cutrag` | `rug.png` | Cut rag card + detail page |
-| `prod-stems` | `stem.png` | Stems card + detail page |
-| `prod-fines` | `fine.png` | Fines card + detail page |
+| `prod-lamina` | SLT shoot, `01-07-26 18` | Lamina card + detail hero |
+| `prod-lamina-alt` | SLT shoot, `25-07-26 23` | Lamina detail page (pressed bale) |
+| `prod-cutrag` | SLT shoot, `25-07-26 12` | Cut rag card + detail hero |
+| `prod-cutrag-alt` | SLT shoot, `25-07-26 19` | Cut rag detail page (pour shot) |
+| `prod-stems` | SLT shoot, `25-07-26 10` | Stems card + detail page |
+| `prod-fines` | `fine.png` (previous set) | Fines card + detail page |
 | `team-mariga` | `l1.jpg` | Welcome message, team |
 | `team-arief` | `l3.jpeg` | Team, Indonesian office |
 
@@ -129,6 +133,14 @@ Add `class="reveal"` to any element to fade it up on scroll; `data-d="1"`–`"4"
 - **Certification claims.** ISO 9001:2015, GMP, HACCP, Zimbabwe Tobacco Board and ITGA claims
   are carried over verbatim from your existing site's product pages. These carry legal weight -
   worth confirming each is current before launch.
+- **No fines photograph.** The SLT shoot covers lamina (flat leaf flakes), cut rag
+  (shreds) and stems (sticks), but contains no shot of tobacco fines. `prod-fines`
+  therefore still uses the previous image. The lamina flake shots were NOT reused for
+  fines - under magnification they are a visibly different grade, and mislabelling a
+  product photo on a trade site risks a buyer ordering the wrong thing. Send a fines
+  shot and it drops straight in.
+- **Product-photo assignment** is my reading of the shoot (flakes = lamina, shreds =
+  cut rag, sticks = stems). Worth a glance to confirm.
 - **Team.** Shows the two people your existing site lists - Sacrifice Mariga (MD) and Arief
   Yulianto (Indonesian Representative) - with their real photos. The booklet also named Dubre
   Muller and Lars Peeters; they are not on the current site, so they are not here either.
