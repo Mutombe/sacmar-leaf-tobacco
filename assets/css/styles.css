@@ -731,3 +731,55 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.08; }
 /* footer credit */
 .footer-credit a { color: var(--on-dark-2); border-bottom: 1px solid transparent; transition: color .25s var(--ease), border-color .25s var(--ease); }
 .footer-credit a:hover { color: var(--ember); border-bottom-color: var(--ember); }
+
+/* ==========================================================================
+   11 · MOBILE IS A DIFFERENT DESIGN, NOT A NARROWER ONE
+   Tokens shrink together, tiles stay two up, prose goes one up, and the
+   numbered cards become a list with the number beside the text.
+   ========================================================================== */
+@media (max-width: 859px) {
+  /* the system scales as a whole rather than desktop proportions on a phone */
+  :root {
+    --gutter:    var(--s-4);                       /* 24 -> 16 */
+    --gutter-lg: var(--s-4);
+    --section-pad-y:    clamp(2.5rem, 9vw, 4rem);  /* 56-160 -> 40-64 */
+    --section-pad-y-lg: clamp(3rem, 11vw, 5rem);
+    --pad-card:  var(--s-5);                       /* 24 -> 20 */
+    --r-card:    var(--s-3);                       /* 16 -> 12 (phone step) */
+    --rhythm-header-content: var(--s-8);           /* 48 -> 32 */
+  }
+
+  /* buttons: full width, label centred, pill radius and padding kept */
+  .hero__actions .btn, .cta__actions .btn, .form button[type="submit"] { justify-content: center; }
+
+  /* numbered cards read as a list: number beside the text, not stacked on it */
+  .card {
+    display: grid; grid-template-columns: auto 1fr;
+    column-gap: var(--s-4); row-gap: 0; align-items: start;
+  }
+  .card__n { grid-row: 1 / span 2; margin-bottom: 0; width: var(--s-10); height: var(--s-10); }
+  .card h3, .card p { grid-column: 2; }
+  .card__go { grid-column: 1 / -1; margin-top: var(--s-4); }
+  .card:not(:has(.card__n)) { display: flex; }     /* cards with no number stay as they were */
+
+  /* image tiles stay two up; prose stays one up */
+  .grid--tiles { grid-template-columns: 1fr 1fr; column-gap: var(--gutter); }
+  .otherprods  { grid-template-columns: 1fr 1fr; column-gap: var(--gutter); }
+  .otherprod span { font-size: var(--fs-body); }
+}
+
+/* footer link columns are tiles too: two up instead of one tall stack */
+@media (max-width: 819px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; column-gap: var(--s-6); }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-col:last-child { grid-column: 1 / -1; }  /* contact holds long strings */
+}
+
+/* The smallest phones: unwind only the two-up decisions that stop working.
+   Measured: two-up still reads fine at 360 and 375, so the unwind sits below
+   those. The numbered-card list is NOT unwound - it is what keeps that section
+   short (229px per card at 390 against 308px stacked), and height matters most
+   on the smallest screens. */
+@media (max-width: 349px) {
+  .footer-grid, .grid--tiles, .otherprods { grid-template-columns: 1fr; }
+}

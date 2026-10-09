@@ -130,6 +130,43 @@ every page (nav, footer), script it across `*.html` rather than editing by hand.
 
 Add `class="reveal"` to any element to fade it up on scroll; `data-d="1"`–`"4"` staggers it.
 
+
+## Copy rules
+
+Enforced mechanically, grep the built HTML to prove it:
+
+- **No em dash.** Zero in the markup. Use commas, colons, full stops, brackets.
+- **No hollow superlatives.** seamless, robust, leverage, elevate, unlock, bespoke,
+  cutting edge, comprehensive, tailored, holistic, world-class, state-of-the-art,
+  pinnacle, meticulous, exceptional, premier, excellence. Count is zero.
+- **No "not just X, but Y"** and no fragment-pair headings.
+
+Character budgets for small text (headings exempt, they may wrap):
+
+| Element | Budget |
+|---|---|
+| Eyebrow, label, tag | 20 |
+| Card bullet | 34 |
+| Card title | 26 |
+| Button label | 22 |
+| Card body paragraph | 110 |
+| Section supporting line | 130 |
+| Lead paragraph | 150 |
+| Body paragraph | 165 |
+
+Verify by counting rendered line boxes with a `Range` (not element height, which
+a 48px touch target inflates): nothing that is one line at 1440 may become two at
+390, and nothing may reach five lines at 390.
+
+## Mobile
+
+Mobile is a different design, not a narrower one. Below 860px the tokens shrink
+together (`--gutter` 24 to 16, `--section-pad-y`, `--pad-card`, `--r-card` 16 to 12),
+image tiles stay two up (team, related products, footer link columns), prose goes
+one up, and the numbered cards become a list with the number beside the text
+rather than stacked above it. Below 350px the two-up decisions unwind; the
+numbered-card list does not, because it is what keeps that section short.
+
 ## Open items
 
 - **"Cut Rag" vs "Cut Rug".** The booklet and existing site both say *Cut Rug*; one of your
