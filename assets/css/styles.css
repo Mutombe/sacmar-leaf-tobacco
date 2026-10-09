@@ -55,9 +55,15 @@
   --pad-card-lg: var(--s-12);              /* 48 */
 
   /* ------------------------------------------ 7 · radii & shadows -------- */
-  /* One family: 8 (nested) · 16 (cards & panels) · full (pills). Nothing else. */
+  /* One family, all on the spine:
+       4  panel on phones (where the panel is near full-bleed)
+       8  panel on desktop, and nested media inside a card
+       16 cards
+       full pills
+     Nothing else. */
   --r-nested: var(--s-2);
   --r-card:   var(--s-4);
+  --r-panel:  var(--s-2);   /* big panels read sharper than cards */
   --r-pill:   999px;
 
   --shadow-card:      0 2px 8px -2px rgba(13,36,22,.12);
@@ -270,7 +276,7 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.08; }
 /* ======================================================== 9 · HERO ===== */
 .hero { position: relative; padding: var(--s-2) var(--s-2) 0; }
 .hero__panel {
-  position: relative; overflow: hidden; border-radius: var(--r-card);
+  position: relative; overflow: hidden; border-radius: var(--r-panel);
   min-height: min(88svh, 800px);
   display: flex; align-items: flex-end;
   background: var(--g-900); box-shadow: var(--shadow-hero);
@@ -495,7 +501,7 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.08; }
 
 /* ======================================================== 9 · CTA ===== */
 .cta {
-  position: relative; overflow: hidden; border-radius: var(--r-card);
+  position: relative; overflow: hidden; border-radius: var(--r-panel);
   background: var(--g-900); color: var(--on-dark);
   padding: var(--s-16) var(--s-6); text-align: center; box-shadow: var(--shadow-hero);
 }
@@ -510,7 +516,7 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.08; }
 /* =================================================== 9 · PAGE TOP ===== */
 .page-top { position: relative; padding: var(--s-2); }
 .page-top__panel {
-  position: relative; overflow: hidden; border-radius: var(--r-card);
+  position: relative; overflow: hidden; border-radius: var(--r-panel);
   background: var(--g-900); color: var(--on-dark);
   padding-block: clamp(7rem, 13vw, 11rem) var(--s-16);
   box-shadow: var(--shadow-hero);
@@ -590,7 +596,7 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.08; }
 /* ================================ HERO STACK (hero + band = one screen) = */
 .hero-stack { padding: var(--s-2); display: flex; flex-direction: column; gap: var(--s-2); background: var(--paper); }
 .hero-stack .hero { padding: 0; }
-.hero-stack .band { border-radius: var(--r-card); }
+.hero-stack .band { border-radius: var(--r-panel); }
 @media (min-width: 860px) and (min-height: 640px) {
   .hero-stack { height: 100svh; }
   .hero-stack .hero { flex: 1 1 auto; min-height: 0; display: flex; }
@@ -706,11 +712,22 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.08; }
 }
 
 /* Short phones: the two stacked full-width CTAs cost 124px on their own, so
-   they sit side by side — but only from 380px up, below which two pill buttons
-   plus their icons cannot fit the measure and the second one clips. */
-@media (min-width: 380px) and (max-width: 859px) and (max-height: 760px) {
+   they sit side by side — but only from 412px up. .btn is white-space:nowrap, so a
+   pair that does not fit cannot shrink: at 390px the second button landed 3px from
+   the panel edge. Measured 16px of clearance at 412px. */
+@media (min-width: 412px) and (max-width: 859px) and (max-height: 760px) {
   .hero__body h1 { font-size: var(--fs-display-lg); }
   .hero__actions { flex-wrap: nowrap; }
   .hero__actions .btn { flex: 1 1 50%; width: auto; min-height: var(--s-12); padding-inline: var(--s-4) var(--s-2); }
   .hero__actions .btn__ic { width: var(--s-8); height: var(--s-8); }
 }
+
+/* Phones: the panel sits only --s-2 from the viewport edge, so a 16px radius
+   reads bubbly against it. Sharpen one step. */
+@media (max-width: 560px) {
+  :root { --r-panel: var(--s-1); }
+}
+
+/* footer credit */
+.footer-credit a { color: var(--on-dark-2); border-bottom: 1px solid transparent; transition: color .25s var(--ease), border-color .25s var(--ease); }
+.footer-credit a:hover { color: var(--ember); border-bottom-color: var(--ember); }
