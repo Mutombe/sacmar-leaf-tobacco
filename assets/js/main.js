@@ -37,6 +37,106 @@
     });
   }
 
+  /* ----------------------------------------------- gallery viewer -- */
+  var gallery = document.querySelector('[data-gallery]');
+  if (gallery) {
+    var shots = [].slice.call(gallery.querySelectorAll('[data-full]'));
+    if (shots.length) {
+      var ICON = function (d) {
+        return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"'
+          + ' stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+          + '<path d="' + d + '"/></svg>';
+      };
+      var lb = null, lbImg, lbCap, lbCount, closeBtn, at = 0, opener = null;
+
+      /* built on first open: an <img> with no src is a request waiting to
+         happen and reads as a broken image to anything auditing the page */
+      var build = function () {
+        lb = document.createElement('div');
+        lb.className = 'lb';
+        lb.setAttribute('role', 'dialog');
+        lb.setAttribute('aria-modal', 'true');
+        lb.setAttribute('aria-label', 'Image viewer');
+        lb.innerHTML =
+          '<button class="lb__btn lb__close" type="button" aria-label="Close viewer">' + ICON('M6 6l12 12M18 6 6 18') + '</button>'
+          + '<div class="lb__stage"></div>'
+          + '<div class="lb__foot">'
+          +   '<p class="lb__cap"></p>'
+          +   '<div class="lb__controls">'
+          +     '<button class="lb__btn" type="button" data-step="-1" aria-label="Previous image">' + ICON('M14 5 7 12l7 7') + '</button>'
+          +     '<span class="lb__count" aria-live="polite"></span>'
+          +     '<button class="lb__btn" type="button" data-step="1" aria-label="Next image">' + ICON('M10 5l7 7-7 7') + '</button>'
+          +   '</div>'
+          + '</div>';
+        lbImg = document.createElement('img');
+        lbImg.className = 'lb__img';
+        lbImg.alt = '';
+        lb.querySelector('.lb__stage').appendChild(lbImg);
+        lbCap = lb.querySelector('.lb__cap');
+        lbCount = lb.querySelector('.lb__count');
+        closeBtn = lb.querySelector('.lb__close');
+
+        lb.addEventListener('click', function (e) {
+          var step = e.target.closest('[data-step]');
+          if (step) { show(at + Number(step.getAttribute('data-step'))); return; }
+          if (e.target.closest('.lb__close') || e.target === lb || e.target.classList.contains('lb__stage')) close();
+        });
+        document.body.appendChild(lb);
+      };
+
+      var captionFor = function (link) {
+        var fig = link.closest('figure');
+        var cap = fig && fig.querySelector('figcaption');
+        return cap ? cap.textContent.trim() : (link.querySelector('img') || {}).alt || '';
+      };
+
+      var show = function (i) {
+        at = (i + shots.length) % shots.length;
+        var link = shots[at];
+        lbImg.src = link.getAttribute('data-full');
+        lbImg.alt = (link.querySelector('img') || {}).alt || '';
+        lbCap.textContent = captionFor(link);
+        lbCount.textContent = (at + 1) + ' of ' + shots.length;
+      };
+
+      var close = function () {
+        if (!lb) return;
+        lb.classList.remove('is-open');
+        document.body.style.overflow = '';
+        if (opener) { opener.focus(); opener = null; }
+      };
+
+      var open = function (i, from) {
+        if (!lb) build();
+        opener = from;
+        show(i);
+        lb.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      };
+
+      shots.forEach(function (link, i) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          open(i, link);
+        });
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (!lb || !lb.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') show(at - 1);
+        if (e.key === 'ArrowRight') show(at + 1);
+        if (e.key === 'Tab') {                       /* keep focus inside */
+          var f = [].slice.call(lb.querySelectorAll('button'));
+          var first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+    }
+  }
+
   /* --------------------------------------------------------- reveals -- */
   var revealables = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window) || reduced) {
@@ -145,7 +245,7 @@
         .then(function (r) {
           if (!r.ok) throw new Error('Request failed');
           form.reset();
-          if (status) status.textContent = 'Thank you — we will get back to you shortly.';
+          if (status) status.textContent = 'Thank you. We will get back to you shortly.';
         })
         .catch(function () {
           if (status) status.textContent = 'Something went wrong. Please email sacrifice@sacmarleaftobacco.co.zw directly.';

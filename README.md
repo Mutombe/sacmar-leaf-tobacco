@@ -11,6 +11,7 @@ Palette is forest green plus the ember orange sampled from the Sacmar logo.
 index.html            Home
 about.html            Welcome message, history, vision & mission, team
 products.html         The four leaf products, quality assurance
+gallery.html          Photographs, with a viewer
 product-lamina.html      Detail page per product: specs, applications,
 product-cut-rag.html     benefits, compliance, related products
 product-stems.html
@@ -79,6 +80,9 @@ come from the SLT photo shoot (`Downloads/New folder (2)`). All re-encoded to
 | `prod-fines` | `fine.png` (previous set) | Fines card + detail page |
 | `team-mariga` | `l1.jpg` | Welcome message, team |
 | `team-courage` | `WhatsApp Image 2026-10-12 at 1.19.56 PM.jpeg` | Team, contact page |
+| `gal-blending` | `Gemini_Generated_Image_ri36icri36icri36.jpg` | Gallery feature frame |
+| `gal-cutrag-macro` | `WhatsApp Image 2026-10-13 at 9.49.42 AM.jpeg` | Gallery tile |
+| `gal-flake-pour` / `gal-flake-pile` | SLT shoot, `01-07-26 20` / `18` | Gallery tiles |
 
 Each is exported as both `.jpg` and `.webp`; the markup uses `<picture>` so browsers
 take the webp and fall back to jpg.
@@ -173,13 +177,22 @@ numbered-card list does not, because it is what keeps that section short.
 - **Certification claims.** ISO 9001:2015, GMP, HACCP, Zimbabwe Tobacco Board and ITGA claims
   are carried over verbatim from your existing site's product pages. These carry legal weight -
   worth confirming each is current before launch.
-- **Four flake shots are unused.** `SLT-01-07-26 17/18/19/20` show a pile of flat leaf
-  flakes. Lamina is the red-taped bale (client-confirmed), cut rag is the shreds and
-  stems are the sticks, so the flakes are either loose/threshed lamina before pressing,
-  or fines. They are NOT currently used anywhere - assigning them to fines without
-  confirmation would risk mislabelling a product on a trade site, and the fines spec
-  says "Fine Grade (< 2mm)" while the flakes read larger than that.
+- **The flake shots are still unidentified.** `SLT-01-07-26 17/18/19/20` show a pile of
+  flat leaf flakes. Lamina is the red-taped bale (client-confirmed), cut rag is the shreds
+  and stems are the sticks, so the flakes are either loose/threshed lamina before pressing,
+  or fines. Two of them now appear in the gallery captioned only as "flake", which claims
+  no grade. They are still NOT used on any product page: naming one without confirmation
+  would mislabel a product on a trade site, and the fines spec says "Fine Grade (< 2mm)"
+  while the flakes read larger than that.
 - **`prod-fines` still uses the previous image** (fine powder) for the same reason.
+- **The gallery feature frame is AI generated.** `Gemini_Generated_Image_...` was supplied
+  by the client on 13 Oct 2026. It is photoreal, it carries the Sacmar logo and its own
+  typography, and it reads as a photograph of a Sacmar blending room. Buyers will take it
+  as documentary. Worth deciding whether to label it or replace it with a real photograph
+  of the floor.
+- **`gal-cutrag-macro` is 495px wide**, the largest the supplied file allows. It holds up
+  in a gallery tile and in the viewer on a phone, and goes soft on a desktop retina screen.
+  A larger original would fix it.
 - **Team.** Sacrifice Mariga (Managing Director) and Divine Courage Zimuto. Arief Yulianto and
   the Indonesian office section were removed on your instruction (12 Oct 2026). Courage's job
   title is not confirmed - the site says "Representative", carried over from the slot he

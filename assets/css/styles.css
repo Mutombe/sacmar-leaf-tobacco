@@ -558,6 +558,77 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.08; }
 .otherprod img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--r-nested); }
 .otherprod span { padding-inline: var(--s-4); font-weight: 700; color: var(--on-dark); font-size: var(--fs-body-lg); }
 
+/* ==================================================== 9 · GALLERY ====== */
+/* One feature frame at its native ratio (it carries its own type and the logo,
+   so it is never cropped), then a 4:3 tile grid. Tiles open a viewer; without
+   JS the link still resolves to the full image. */
+.gal-feature { margin-bottom: var(--rhythm-header-content); }
+.gal-feature__link {
+  display: block; position: relative; overflow: hidden;
+  border-radius: var(--r-panel); background: var(--g-800);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow .4s var(--ease-out);
+}
+.gal-feature__link img { display: block; width: 100%; height: auto; transition: transform .6s var(--ease-out); }
+.gal-feature__link:hover { box-shadow: var(--shadow-card-lift); }
+.gal-feature__link:hover img { transform: scale(1.015); }
+
+.gal { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); }
+@media (min-width: 1040px) { .gal { grid-template-columns: repeat(3, 1fr); gap: var(--gutter-lg); } }
+@media (max-width: 349px)  { .gal { grid-template-columns: 1fr; } }
+
+.gal__fig { display: flex; flex-direction: column; margin: 0; }
+.gal__link {
+  display: block; position: relative; overflow: hidden;
+  aspect-ratio: 4 / 3; border-radius: var(--r-card);
+  background: var(--g-800); box-shadow: var(--shadow-card);
+  transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out);
+}
+.gal__link img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease-out); }
+.gal__link:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-lift); }
+.gal__link:hover img { transform: scale(1.04); }
+.gal__cap { margin-top: var(--s-3); font-size: var(--fs-body); color: var(--ink-2); line-height: 1.5; }
+.bg-green .gal__cap, .bg-green-2 .gal__cap { color: var(--on-dark-2); }
+
+/* the zoom affordance is a hover cue, so it is not drawn on touch */
+.gal__ic {
+  position: absolute; right: var(--s-3); bottom: var(--s-3);
+  width: var(--s-10); height: var(--s-10); border-radius: var(--r-pill);
+  display: grid; place-items: center;
+  background: rgba(13, 36, 22, .62); color: var(--on-dark);
+  opacity: 0; transform: translateY(var(--s-2));
+  transition: opacity .3s var(--ease-out), transform .3s var(--ease-out);
+}
+@media (hover: none) { .gal__ic { display: none; } }
+.gal__link:hover .gal__ic, .gal__link:focus-visible .gal__ic { opacity: 1; transform: none; }
+
+/* ------------------------------------------------- the viewer ---------- */
+.lb {
+  position: fixed; inset: 0; z-index: 200;
+  display: none; grid-template-rows: auto 1fr auto;
+  background: var(--g-900);          /* solid: a translucent backdrop let the tiles behind read through */
+  padding: var(--s-6) var(--frame-pad) var(--s-8);
+}
+.lb.is-open { display: grid; }
+/* the frame is the stage and the picture is fitted inside it: sizing the image
+   itself leaves the 1fr row free to grow to the image's intrinsic height, which
+   pushes the caption and the controls back over the picture */
+.lb__stage { position: relative; min-height: 0; }
+.lb__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.lb__foot { text-align: center; padding-top: var(--s-5); }
+.lb__cap { color: var(--on-dark); font-size: var(--fs-body); }
+.lb__controls { display: flex; align-items: center; justify-content: center; gap: var(--s-4); margin-top: var(--s-4); }
+.lb__count { color: var(--on-dark-3); font-size: var(--fs-body); min-width: 7ch; }
+.lb__btn {
+  width: var(--s-12); height: var(--s-12); border-radius: var(--r-pill);
+  display: grid; place-items: center; cursor: pointer;
+  border: 1px solid rgba(244, 241, 232, .28); background: transparent; color: var(--on-dark);
+  transition: background .3s var(--ease), border-color .3s var(--ease);
+}
+.lb__btn:hover { background: var(--ember); border-color: var(--ember); color: var(--g-900); }
+/* the close control gets its own row, so it never sits on the picture */
+.lb__close { justify-self: end; margin-bottom: var(--s-4); }
+
 /* ===================================================== 9 · FOOTER ===== */
 .site-footer { background: var(--g-900); color: var(--on-dark); margin-top: var(--s-16); }
 .footer-grid { display: grid; row-gap: var(--s-10); column-gap: 0; padding-block: var(--s-20) var(--s-12); }
