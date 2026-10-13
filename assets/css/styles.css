@@ -766,6 +766,10 @@ h1, h2, h3, h4 { font-weight: 700; line-height: 1.08; }
   .grid--tiles { grid-template-columns: 1fr 1fr; column-gap: var(--gutter); }
   .otherprods  { grid-template-columns: 1fr 1fr; column-gap: var(--gutter); }
   .otherprod span { font-size: var(--fs-body); }
+
+  /* a name is not a display heading in a 170px tile: at the display-md size a
+     three-word name takes three lines and the two cards stop aligning */
+  .person h3 { font-size: var(--fs-body-xl); min-height: 2lh; }  /* roles stay on one line across the pair */
 }
 
 /* footer link columns are tiles too: two up instead of one tall stack */

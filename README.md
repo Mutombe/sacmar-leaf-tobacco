@@ -15,7 +15,7 @@ product-lamina.html      Detail page per product: specs, applications,
 product-cut-rag.html     benefits, compliance, related products
 product-stems.html
 product-fines.html
-contact.html          Contact details, enquiry form, Indonesian office
+contact.html          Contact details, enquiry form, representative
 assets/css/styles.css Single stylesheet
 assets/js/main.js     Scroll reveals, sticky header, mobile nav, form handling
 assets/img/           Logo variants, favicons, social card
@@ -56,9 +56,8 @@ Confirmed facts used throughout:
 | Email | info@sacmarleaftobacco.co.zw |
 | Address | Unit 12, 6 Chelmsford Road, Belgravia, Harare |
 | Hours | Mon-Fri 08:00-17:00, Sat 08:00-13:00 |
-| Indonesian rep | Arief Yulianto, +62 811 277 209, ariefyulianto@yahoo.co.id |
+| Representative | Divine Courage Zimuto, +263 77 771 9723, courage@sacmarleaftobacco.co.zw |
 | Managing Director | Sacrifice Mariga |
-| Indonesian Representative | Arief Yulianto |
 
 ## Photography
 
@@ -79,7 +78,7 @@ come from the SLT photo shoot (`Downloads/New folder (2)`). All re-encoded to
 | `prod-stems` | SLT shoot, `25-07-26 10` | Stems card + detail page |
 | `prod-fines` | `fine.png` (previous set) | Fines card + detail page |
 | `team-mariga` | `l1.jpg` | Welcome message, team |
-| `team-arief` | `l3.jpeg` | Team, Indonesian office |
+| `team-courage` | `WhatsApp Image 2026-10-12 at 1.19.56 PM.jpeg` | Team, contact page |
 
 Each is exported as both `.jpg` and `.webp`; the markup uses `<picture>` so browsers
 take the webp and fall back to jpg.
@@ -129,7 +128,6 @@ files are now the source of truth and are edited directly. For a change that tou
 every page (nav, footer), script it across `*.html` rather than editing by hand. Search for `<nav class="nav"` and `<nav class="mobile-nav"`.
 
 Add `class="reveal"` to any element to fade it up on scroll; `data-d="1"`–`"4"` staggers it.
-
 
 ## Copy rules
 
@@ -182,9 +180,12 @@ numbered-card list does not, because it is what keeps that section short.
   confirmation would risk mislabelling a product on a trade site, and the fines spec
   says "Fine Grade (< 2mm)" while the flakes read larger than that.
 - **`prod-fines` still uses the previous image** (fine powder) for the same reason.
-- **Team.** Shows the two people your existing site lists - Sacrifice Mariga (MD) and Arief
-  Yulianto (Indonesian Representative) - with their real photos. The booklet also named Dubre
-  Muller and Lars Peeters; they are not on the current site, so they are not here either.
+- **Team.** Sacrifice Mariga (Managing Director) and Divine Courage Zimuto. Arief Yulianto and
+  the Indonesian office section were removed on your instruction (12 Oct 2026). Courage's job
+  title is not confirmed - the site says "Representative", carried over from the slot he
+  replaces. His photo is a candid in a car park, cropped square; a studio shot on the Sacmar
+  backdrop would match Mariga's. The booklet also named Dubre Muller and Lars Peeters; they
+  were not on the previous site, so they are not here either.
 
 Regulatory note: the site is written business-to-business for unmanufactured leaf, with a
 trade disclaimer in the footer. Tobacco advertising rules differ by market — have counsel
